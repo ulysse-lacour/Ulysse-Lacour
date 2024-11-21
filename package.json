@@ -1,0 +1,23 @@
+{
+  "name": "directuxt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "bash ./scripts/dev.sh",
+    "prod": "bash ./scripts/prod.sh",
+    "backup": "bash ./scripts/backup.sh backup",
+    "restore": "bash ./scripts/restore.sh restore",
+    "export-template": "bash ./scripts/export-template.sh",
+    "apply-template": "bash ./scripts/apply-template.sh",
+    "update-template": "bash ./scripts/update-template.sh",
+    "types": "bash ./scripts/types.sh",
+    "test": "pnpm --filter nuxt run test",
+    "lint": "pnpm --filter nuxt run lint",
+    "lintfix": "pnpm --filter nuxt run lintfix"
+  },
+  "packageManager": "pnpm@9.5.0",
+  "engines": {
+    "node": ">=20.14.0",
+    "pnpm": ">=9"
+  }
+}

@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./base/fonts";
+@import "./utils/mixins";
+@import "./utils/variables";
+
+@layer base {
+  @import "./base/base";
+  @import "./base/error";
+}
+
+@layer utilities {
+  @import "./utils/utils";
+}
+
+@layer components {
+  @import "./components/header";
+  @import "./components/footer";
+  @import "./components/hamburgers/hamburgers";
+  @import "./components/language-switcher";
+  @import "./components/medias";
+}

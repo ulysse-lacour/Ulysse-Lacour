@@ -1,0 +1,49 @@
+:root {
+  // Colors
+  --yellow: #fbf379;
+  --pink: #feb8c5;
+  --green: #94ffac;
+  --blue: #7ad3d8;
+
+  // Fonts size
+  --fs-s: 0.938rem;
+  --fs-m: 1.25rem;
+  --fs-l: 1.875rem;
+  --fs-xl: 3.125rem;
+
+  // Line heights
+  --lh-s: 1.125rem;
+  --lh-m: 1.125rem;
+  --lh-l: 1.563rem;
+  --lh-xl: 3.125rem;
+}
+
+@include screen-xs {
+  :root {
+    // Fonts
+    --fs-xl: 3rem;
+    --lh-xl: 3rem;
+  }
+}
+
+@include screen-md {
+  :root {
+    // Fonts
+    --fs-s: 1.25rem;
+    --fs-xl: 6.25rem;
+
+    // Line heights
+    --lh-s: 1.875rem;
+    --lh-xl: 6.25rem;
+  }
+}
+
+// @include screen-xl {
+//   :root {
+//     // Fonts
+//     --fs-xl: 6.25rem;
+
+//     // Line heights
+//     --lh-xl: 6.25rem;
+//   }
+// }

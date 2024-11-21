@@ -1,0 +1,54 @@
+body:has(#error-page) {
+  & header,
+  main,
+  #home-logo {
+    background-color: var(--pink);
+  }
+  footer {
+    display: none;
+  }
+
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+#error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+
+  .error-code {
+    height: 50vw;
+    max-height: 60svh;
+    min-height: 15rem;
+    width: 50vw;
+    max-width: 60svh;
+    min-width: 15rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #000000;
+
+    h1 {
+      @include headline;
+      color: white;
+      background-color: #000000;
+    }
+  }
+  a {
+    @include subline;
+    cursor: pointer;
+  }
+}

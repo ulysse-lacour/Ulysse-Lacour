@@ -1,0 +1,58 @@
+// Resets
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Base
+body {
+  @apply min-h-screen w-full overflow-x-hidden;
+  font-family: "TWKLausanne", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  @include text;
+  overscroll-behavior: none;
+
+  &.mobile-lock,
+  &.scroll-lock {
+    @apply overflow-y-hidden;
+  }
+}
+
+main {
+  scroll-behavior: smooth;
+  flex-grow: 1;
+}
+
+p {
+  a {
+    text-decoration: underline;
+    text-underline-offset: 0.1rem;
+    text-decoration-thickness: 2px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .cdx-underline {
+    text-decoration: underline;
+    text-underline-offset: 0.1rem;
+    text-decoration-thickness: 2px;
+  }
+}
+
+@include screen-md {
+  body {
+    &.mobile-lock {
+      @apply overflow-y-auto;
+    }
+  }
+}

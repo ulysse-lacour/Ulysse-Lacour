@@ -1,0 +1,48 @@
+ARG NODE_VERSION=20.14.0
+
+
+################################################################################
+# Set the base image
+FROM node:${NODE_VERSION}-slim AS base
+
+# Increase the max heap size
+ENV NODE_OPTIONS=--max-old-space-size=8192
+
+# Define environment variables
+ENV HOST=0.0.0.0
+ENV NODE_ENV=development
+
+# Enable pnpm
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
+# Set the working directory
+WORKDIR /nuxt
+
+
+################################################################################
+# Create a stage for installing depedencies
+FROM base AS dependencies
+
+# Copy the package.json and lock file
+COPY ./package.json ./
+COPY ./pnpm-lock.yaml ./
+
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+
+################################################################################
+# Create a stage for running the application in development mode
+FROM dependencies AS development
+
+# Copy the source code
+COPY . .
+
+# Expose the ports
+EXPOSE ${PORT}
+EXPOSE 24678
+
+# Run the application
+CMD [ "pnpm", "dev" ]

@@ -1,0 +1,30 @@
+footer {
+  @include text;
+  @apply bg-black p-3 pb-8 pt-4 text-white;
+
+  .locale-switcher {
+    button {
+      &.active {
+        @apply border-white;
+      }
+    }
+  }
+}
+
+@include screen-md {
+  footer {
+    @include subline-small;
+    @apply mt-4 bg-white text-black;
+    .locale-switcher {
+      button {
+        &.active {
+          @apply border-black;
+        }
+      }
+    }
+  }
+}
+
+body:has(.info) footer.footer {
+  display: none !important;
+}

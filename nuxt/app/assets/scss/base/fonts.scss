@@ -1,0 +1,151 @@
+// Font-face mixin
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $font-family;
+    src: url("#{$file-path}.woff2");
+    font-display: swap;
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// Fonts
+@include font-face("TWKLausanne", "@/assets/fonts/TWKLausanne-250", 250, normal);
+
+@include font-face("TWKLausanne", "@/assets/fonts/TWKLausanne-250Italic", 250, italic);
+
+// Text styles
+@mixin headline {
+  font-weight: normal;
+  font-size: var(--fs-xl);
+  line-height: var(--lh-xl);
+  letter-spacing: -0.04em;
+}
+
+.f-xl {
+  @include headline;
+}
+
+@mixin subline {
+  font-weight: normal;
+  font-size: var(--fs-l);
+  line-height: var(--lh-l);
+  letter-spacing: -0.02em;
+}
+
+.f-l {
+  @include subline;
+}
+
+@mixin subline-small {
+  font-weight: normal;
+  font-size: var(--fs-m);
+  line-height: var(--lh-m);
+  letter-spacing: -0.01em;
+}
+
+.f-m {
+  @include subline-small;
+}
+
+@mixin text {
+  font-weight: normal;
+  font-size: var(--fs-s);
+  line-height: var(--lh-s);
+}
+
+.f-s {
+  @include text;
+}
+
+// Richtext
+
+// // Headlines
+// .richtext {
+//   &-h1 {
+//     @include headline;
+//   }
+//   &-h2 {
+//     @include subline;
+//   }
+//   &-h3 {
+//     @include subline-small;
+//   }
+//   &-h4,
+//   &-h5,
+//   &-h6 {
+//     @include text;
+//   }
+// }
+
+// // Lists
+// .richtext {
+//   &-ol {
+//     & > ol {
+//       padding-left: 1rem;
+//     }
+
+//     & > li {
+//       display: list-item;
+//       list-style-position: inside;
+//       list-style-type: decimal;
+//     }
+//     & > ol {
+//       & > li {
+//         display: list-item;
+//         list-style-position: inside;
+//         list-style-type: lower-alpha;
+//       }
+
+//       & > ol {
+//         & > li {
+//           display: list-item;
+//           list-style-position: inside;
+//           list-style-type: lower-roman;
+//         }
+
+//         & > ol {
+//           & > li {
+//             display: list-item;
+//             list-style-position: inside;
+//             list-style-type: decimal;
+//           }
+//         }
+//       }
+//     }
+//   }
+//   &-ul {
+//     & > li {
+//       display: list-item;
+//       list-style-position: inside;
+
+//       list-style-type: disc;
+//     }
+
+//     & > ul {
+//       padding-left: 1rem;
+
+//       & > li {
+//         display: list-item;
+//         list-style-position: inside;
+//         list-style-type: circle;
+//       }
+
+//       & > ul {
+//         & > li {
+//           display: list-item;
+//           list-style-position: inside;
+//           list-style-type: square;
+//         }
+
+//         & > ul {
+//           & > li {
+//             display: list-item;
+//             list-style-position: inside;
+//             list-style-type: disc;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

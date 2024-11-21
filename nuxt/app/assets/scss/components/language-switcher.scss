@@ -1,0 +1,21 @@
+.locale-switcher {
+  @apply flex items-center justify-center gap-2;
+  button {
+    @apply uppercase;
+    @include subline;
+    transform: scale(0.85);
+    padding: 0.5rem 0.25rem 0 0.25rem;
+    &.active {
+      @apply border-spacing-2 border-2 border-black;
+      border-radius: 0.35rem;
+    }
+  }
+}
+
+@include screen-md {
+  .locale-switcher {
+    button {
+      transform: scale(1);
+    }
+  }
+}

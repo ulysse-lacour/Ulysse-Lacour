@@ -1,0 +1,55 @@
+// Pre/Errors
+pre {
+  @apply whitespace-normal;
+}
+
+// Strapi pages
+.page-title {
+  @include subline;
+}
+
+.page-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.page-text {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include subline;
+    @apply pb-1;
+  }
+}
+
+.info .page-text {
+  @apply text-2xl;
+}
+
+// Main content wrapper
+#home-logo {
+  position: absolute;
+}
+.content-wrapper {
+  margin-top: calc(var(--fs-xl) + 0.5rem);
+}
+
+// Prevent images being dragged
+img {
+  user-drag: none;
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
