@@ -14,24 +14,16 @@
 
 <template>
   <NuxtLayout>
-    <!-- 404 page -->
-    <div v-if="errorCode === 404" id="error-page" class="error-404">
-      <p class="text-2xl font-bold">{{ $t("error.error_404") }}</p>
+    <div id="error-page" :class="`error-${errorCode}`" role="alert" aria-labelledby="error-title">
+      <p id="error-title" class="text-2xl font-bold">
+        {{ $t(`error.error_${errorCode}`) }}
+      </p>
       <div class="error-code">
-        <h1>404</h1>
+        <h1>{{ errorCode }}</h1>
       </div>
-
-      <a class="font-bold" @click="handleError"> Home </a>
-    </div>
-
-    <!-- 503 page -->
-    <div v-else id="error-page" class="error-503">
-      <p class="text-2xl font-bold">{{ $t("error.error_503") }}</p>
-      <div class="error-code">
-        <h1>503</h1>
-      </div>
-
-      <a class="font-bold" @click="handleError"> Home </a>
+      <NuxtLink to="/" class="font-bold" @click="handleError">
+        {{ $t("common.home") }}
+      </NuxtLink>
     </div>
   </NuxtLayout>
 </template>

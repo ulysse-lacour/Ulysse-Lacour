@@ -18,16 +18,29 @@
     data() {
       return {
         player: null,
+        playerError: null,
       };
     },
     mounted() {
-      this.player = videojs(this.$refs.videoPlayer, this.options, () => {
-        // this.player.log("onPlayerReady", this);
-      });
+      try {
+        this.player = videojs(this.$refs.videoPlayer, this.options, () => {
+          this.player.on("error", (error) => {
+            this.playerError = error;
+            console.error("Video.js player error:", error);
+          });
+        });
+      } catch (error) {
+        console.error("Failed to initialize video player:", error);
+        this.playerError = error;
+      }
     },
     beforeUnmount() {
       if (this.player) {
-        this.player.dispose();
+        try {
+          this.player.dispose();
+        } catch (error) {
+          console.error("Error disposing video player:", error);
+        }
       }
     },
   };

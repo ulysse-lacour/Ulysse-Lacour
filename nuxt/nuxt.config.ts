@@ -134,11 +134,11 @@ export default defineNuxtConfig({
         file: "en.ts",
       },
       {
-        code: "de",
-        iso: "de-DE",
-        name: "Deutsch",
+        code: "fr",
+        iso: "fr-FR",
+        name: "Français",
         dir: "ltr",
-        file: "de.ts",
+        file: "fr.ts",
       },
     ],
     defaultLocale: "en",
@@ -148,7 +148,7 @@ export default defineNuxtConfig({
     // customRoutes: "config",
     // pages: {
     //   "project/[slug]": {
-    //     de: "/projet/[slug]",
+    //     fr: "/projet/[slug]",
     //     en: "/project/[slug]",
     //   },
     // },

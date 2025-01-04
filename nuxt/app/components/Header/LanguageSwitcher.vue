@@ -1,7 +1,7 @@
 <script setup lang="ts">
   const { locale: currentLocale, locales, setLocale, t } = useI18n();
 
-  const localeSwicth = (localeCode: "en" | "de") => {
+  const localeSwicth = (localeCode: "en" | "fr") => {
     setLocale(localeCode);
     // // Refresh page until this is fix
     // // https://github.com/harlan-zw/nuxt-seo/issues/283

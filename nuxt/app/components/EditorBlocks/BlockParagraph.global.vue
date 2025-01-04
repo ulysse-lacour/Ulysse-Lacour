@@ -3,10 +3,19 @@
 </template>
 
 <script setup lang="ts">
+  interface BlockData {
+    data: {
+      text: string;
+    };
+  }
+
   const props = defineProps({
     blockData: {
-      type: Object,
+      type: Object as PropType<BlockData>,
       required: true,
+      validator: (value: BlockData) => {
+        return typeof value?.data?.text === "string";
+      },
     },
   });
 </script>

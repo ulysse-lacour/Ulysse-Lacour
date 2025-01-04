@@ -1,4 +1,16 @@
+interface SitemapEntry {
+  loc: string;
+  lastmod: string | null;
+  changefreq: string | null;
+  priority: number;
+}
+
 // get functions are fetching data from Directus and return an array of entries pretty formatted for sitemap
+interface Page {
+  slug: string;
+  date_created: string | null;
+  date_updated: string | null;
+}
 
 async function getPages() {
   try {
@@ -14,7 +26,7 @@ async function getPages() {
       })
     );
 
-    const entries = pages.map((page) => {
+    const entries: SitemapEntry[] = pages.map((page: Page) => {
       return {
         loc: `${page.slug}`,
         lastmod: page.date_updated || page.date_created,

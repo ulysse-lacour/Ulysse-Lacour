@@ -23,9 +23,16 @@
 </template>
 
 <script setup lang="ts">
+  interface BlockData {
+    data: {
+      level: 1 | 2 | 3 | 4 | 5 | 6;
+      text: string;
+    };
+  }
+
   const props = defineProps({
     blockData: {
-      type: Object,
+      type: Object as () => BlockData,
       required: true,
     },
   });
