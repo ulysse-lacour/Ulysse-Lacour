@@ -1,48 +1,183 @@
 #!/bin/bash
 
-# Styles
-DEFAULT='\x1b[36;1m'
-SUCCESS='\x1b[32;1m'
-ERROR='\x1b[31;43;1m'
-YELLOW='\x1b[33;1m'
-VIOLET='\x1b[35;1m'
-BOLD='\x1b[1m'
-UNDERLINE='\x1b[4m'
-RESET='\x1b[0m'
+#===========================================
+# Scripts to start development environment
+# Version: 1.0
+#===========================================
 
-echo -e "\n${VIOLET}${BOLD}Running apps in dev mode :${RESET}\n"
+#-------------------------------------------
+# Color Configuration and Utility Functions
+#-------------------------------------------
 
-# Function to handle errors
-handle_error() {
-    echo -e "\n${ERROR}${BOLD}ERROR !!!${RESET}\n"
-    exit 1
+# Text formatting
+BOLD='\033[1m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+# Print formatted message with emoji indicators
+print_message() {
+    local type=$1
+    local message=$2
+    case $type in
+        "info") echo -e "${BLUE}ℹ️  ${message}${NC}" ;;
+        "success") echo -e "${GREEN}✅ ${message}${NC}" ;;
+        "error") echo -e "${RED}❌ ${message}${NC}" ;;
+        "warning") echo -e "${YELLOW}⚠️  ${message}${NC}" ;;
+        *) echo -e "$message" ;;
+    esac
 }
 
-# Use right node version
-echo -e "\n${DEFAULT}Using right node version :${RESET}\n"
-. ~/.nvm/nvm.sh || handle_error
-nvm use 20.14 || handle_error
+# Print section header with clear separation
+print_header() {
+    echo -e "\n\n${BOLD}${BLUE}=== $1 ===${NC}\n"
+}
 
-# Load .env file
-set -a
-source .env || handle_error
-set +a
+#-------------------------------------------
+# Environment Configuration
+#-------------------------------------------
+
+# Load and validate environment configuration
+check_env_file() {
+    print_header "Environment Check"
+    if [ ! -f ".env" ]; then
+        print_message "error" "Environment file not found: .env"
+        exit 1
+    fi
+    print_message "info" "Loading environment variables..."
+    set -a
+    source .env
+    set +a
+    print_message "success" "Environment loaded successfully"
+}
+
+# Verify all required variables are set
+validate_env_vars() {
+    local required_vars=(
+    "NODE_VERSION"
+    "PROJECT_NAME"
+    "TEMPLATE_DIR"
+    "DB_NAME"
+    "DB_USER"
+    "DB_PWD"
+    "DB_PORT"
+    "DIRECTUS_URL"
+    "DIRECTUS_PORT"
+    "DIRECTUS_ADMIN_TOKEN"
+    "ADMIN_EMAIL"
+    "ADMIN_PWD"
+    "SECRET"
+    "NUXT_PORT"
+    )
+    local missing_vars=()
+
+    for var in "${required_vars[@]}"; do
+        if [ -z "${!var}" ]; then
+            missing_vars+=("$var")
+        fi
+    done
+
+    if [ ${#missing_vars[@]} -ne 0 ]; then
+        echo -e "\n"
+        print_message "error" "Missing required environment variables:"
+        for var in "${missing_vars[@]}"; do
+            echo "  - $var"
+        done
+        echo -e "\n"
+        exit 1
+    fi
+}
+
+#-------------------------------------------
+# Initialization
+#-------------------------------------------
+
+# Load configuration
+check_env_file
+validate_env_vars
+
+#-------------------------------------------
+# Functions
+#-------------------------------------------
+
+# Use the right node version
+use_node_version() {
+    print_header "Node Version"
+    print_message "info" "Using right node version..."
+    . ~/.nvm/nvm.sh
+    nvm use ${NODE_VERSION}
+
+    if [ $? -eq 0 ]; then
+        print_message "success" "Node version set to ${NODE_VERSION}"
+    else
+        print_message "error" "Failed to set node version"
+        exit 1
+    fi
+}
 
 # Install Nuxt dependencies
-echo -e "\n${DEFAULT}Installing Nuxt dependencies :${RESET}\n"
-(cd ./nuxt && pnpm install) || handle_error
+install_dependencies() {
+    print_header "Install Dependencies"
+    print_message "info" "Installing Nuxt dependencies..."
+    pnpm install --force
+
+    if [ $? -eq 0 ]; then
+        print_message "success" "Dependencies installed successfully"
+    else
+        print_message "error" "Failed to install dependencies"
+        exit 1
+    fi
+}
 
 # Build docker images
-echo -e "\n${DEFAULT}Building docker images :${RESET}\n"
-docker compose -f compose.dev.yml build --no-cache
+build_images() {
+    print_header "Build Docker Images"
+    print_message "info" "Building docker images..."
+    docker compose -f compose.dev.yml build --no-cache
 
-# Mount docker containers
-echo -e "\n${DEFAULT}Mounting docker containers :${RESET}\n"
-docker compose -f compose.dev.yml up -d || handle_error
+    if [ $? -eq 0 ]; then
+        print_message "success" "Docker images built successfully"
+    else
+        print_message "error" "Failed to build docker images"
+        exit 1
+    fi
+}
 
-# Success message
-echo -e "\n\n${SUCCESS}Dockerized apps up and running on localhost!${RESET}\n"
+# Start docker containers
+start_containers() {
+    print_header "Start Docker Containers"
+    print_message "info" "Starting docker containers..."
+    docker compose -f compose.dev.yml up -d
 
-# Apps link display
-echo -e "\n${DEFAULT}Directus running on : ${BOLD}${YELLOW}http://localhost:${DIRECTUS_PORT} ${RESET}\n"
-echo -e "${DEFAULT}Nuxt running on : ${BOLD}${YELLOW}http://localhost:${NUXT_PORT} ${RESET}\n"
+    if [ $? -eq 0 ]; then
+        print_message "success" "Docker containers started successfully"
+    else
+        print_message "error" "Failed to start docker containers"
+        exit 1
+    fi
+}
+
+# Main function to run all tasks
+main() {
+    use_node_version
+    install_dependencies
+    build_images
+    start_containers
+
+    echo -e "\n\n"
+    if [ $? -eq 0 ]; then
+        echo -e "${BLUE}Nuxt running on : ${BOLD}${YELLOW}http://localhost:${NUXT_PORT} ${NC}\n"
+        echo -e "${BLUE}Directus running on : ${BOLD}${YELLOW}http://localhost:${DIRECTUS_PORT} ${NC}\n"
+    else
+        print_message "error" "Failed to start apps..."
+        exit 1
+    fi
+}
+
+#-------------------------------------------
+# Main
+#-------------------------------------------
+main
+

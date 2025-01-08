@@ -73,6 +73,7 @@ export default defineNuxtConfig({
     "@nuxt/fonts",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
+    "radix-vue/nuxt",
   ],
 
   // Components configuration - https://nuxt.com/docs/guide/directory-structure/components
@@ -206,5 +207,7 @@ export default defineNuxtConfig({
 
   colorMode: {
     classSuffix: "",
+    // No dark mode
+    preference: "light",
   },
 });

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Dropfile @dropped="files = $event" />
+    <DropZone @dropped="files = $event" />
     <div v-if="files && files.length" class="mt-5">
       <div
         v-for="(file, i) in files"
@@ -18,9 +18,9 @@
         </div>
 
         <div class="hidden transition group-hover:block">
-          <Button size="icon-sm" variant="outline" @click="removeFile(i)">
+          <UiButton size="icon-sm" variant="outline" @click="removeFile(i)">
             <Icon name="heroicons:x-mark" class="h-3.5 w-3.5" />
-          </Button>
+          </UiButton>
         </div>
       </div>
     </div>
