@@ -1,0 +1,834 @@
+[
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "0970c7dd-9c30-43ce-83a6-8587df4e0706"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "0fd9e688-e04e-45f0-a9b7-baeaf248a934"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "11dd2966-9f3b-47f1-83ac-d483fd721a71"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "1b23a242-ac42-4fd7-8fca-86bdf620a17b"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "3a64c2bb-c91e-4c43-a5e1-436d4d75d6c8"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "3be9f41d-6264-4e22-ab21-30c84cc8fda3"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "454f9239-99f9-45cd-8e93-f07ad7205e21"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "4a3092d4-24b4-428c-86d9-2e1893aa7f0a"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "5103443d-5270-482d-8bc0-6b3493575af1"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "57c11265-6fa5-4b74-888d-bf3a01954ff9"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "598eda48-3266-45f5-84af-3d6858f1cf1a"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "5edcb42d-4a84-4ff7-9ea5-b67f906ad23f"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "6067c51d-1b2b-4797-b35f-88498743ee57"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "7cb601b6-aa99-4277-a33d-12163b2a824e"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "801b0ef7-8f4a-4c31-888a-9e00d0d61d6c"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "85d17818-bfff-4443-8241-20b1fe0ab79f"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "86b92b8d-c378-4840-90bd-6e396b26768f"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "87bffaf9-a6bd-4bf4-8418-1a091cea3b68"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "8b5b9c22-99af-4a7d-963b-a217ad8d7a7e"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "8e9fef88-8194-4de7-950b-40734a499d2a"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "94a107ec-0908-4655-b7c2-89cf53e56ebd"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "9630746e-953a-4892-9c82-59220b21a908"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "96c84462-48e1-4cdb-a9f3-7115b7bce85b"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "ac8aad44-4225-460b-86a0-1f8f003f4497"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "ad228fcd-d846-4604-a26d-084bbc207d94"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "ad2b084f-117f-4fbc-871d-7348af3a4fa8"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "b2ec47e7-5a54-482f-a9e9-2e2a1763ad10"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "b79d3321-3016-4797-ada8-9596f0ad9ac7"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "c13a1c8e-599b-4269-9d1b-48c9e0deeba8"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "ce35b191-4290-4cc5-9e11-6e4f92086b11"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "d1d43967-88e1-49b2-8bf4-99cdc9e7e683"
+  },
+  {
+    "bookmark": null,
+    "role": null,
+    "collection": "languages",
+    "search": null,
+    "layout": "tabular",
+    "layout_query": {
+      "tabular": {
+        "fields": [
+          "name",
+          "iso"
+        ]
+      }
+    },
+    "layout_options": {
+      "tabular": {
+        "widths": {},
+        "spacing": "comfortable"
+      }
+    },
+    "refresh_interval": null,
+    "filter": null,
+    "icon": "bookmark",
+    "color": null,
+    "_syncId": "d2c84c72-a234-4771-b984-4dde50d7ce3b"
+  }
+]

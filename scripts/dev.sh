@@ -58,14 +58,12 @@ validate_env_vars() {
     local required_vars=(
     "NODE_VERSION"
     "PROJECT_NAME"
-    "TEMPLATE_DIR"
     "DB_NAME"
     "DB_USER"
     "DB_PWD"
     "DB_PORT"
     "DIRECTUS_URL"
     "DIRECTUS_PORT"
-    "DIRECTUS_ADMIN_TOKEN"
     "ADMIN_EMAIL"
     "ADMIN_PWD"
     "SECRET"
@@ -117,7 +115,7 @@ use_node_version() {
     fi
 }
 
-# Install Nuxt dependencies
+# Install local Nuxt dependencies
 install_dependencies() {
     print_header "Install Dependencies"
     print_message "info" "Installing Nuxt dependencies..."

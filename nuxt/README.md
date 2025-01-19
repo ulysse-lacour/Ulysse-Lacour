@@ -36,6 +36,14 @@ A lot of good other components can be found in [ui thing](https://ui-thing.behon
 
 A lot of usefull composables/helper functions can be used from [VueUse](https://vueuse.org/).
 
+## Taze
+
+Thanks to our dear Antony Fu you can update your npm packages with [Taze](https://github.com/antfu-collective/taze/tree/main)
+
+```bash
+npx taze -w
+```
+
 ## Nuxt Documentation
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.

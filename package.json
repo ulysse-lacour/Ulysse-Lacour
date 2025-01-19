@@ -5,17 +5,19 @@
   "scripts": {
     "dev": "bash ./scripts/dev.sh",
     "prod": "bash ./scripts/prod.sh",
-    "backup": "bash ./scripts/backup.sh backup",
-    "restore": "bash ./scripts/restore.sh restore",
-    "export-template": "bash ./scripts/export-template.sh",
-    "apply-template": "bash ./scripts/apply-template.sh",
-    "update-template": "bash ./scripts/update-template.sh",
     "types": "bash ./scripts/types.sh",
     "test": "pnpm --filter nuxt run test",
     "lint": "pnpm --filter nuxt run lint",
-    "lintfix": "pnpm --filter nuxt run lintfix"
+    "lintfix": "pnpm --filter nuxt run lintfix",
+    "db:pull": "bash ./scripts/db-pull.sh",
+    "db:push": "bash ./scripts/db-push.sh",
+    "config:pull": "bash ./scripts/config-pull.sh",
+    "config:push": "bash ./scripts/config-push.sh",
+    "config:diff": "bash ./scripts/config-diff.sh",
+    "template:pull": "bash ./scripts/template-pull.sh",
+    "template:push": "bash ./scripts/template-push.sh"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.10.0",
   "engines": {
     "node": ">=20.14.0",
     "pnpm": ">=9"

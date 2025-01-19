@@ -3,7 +3,6 @@
 #===========================================
 # Directus Backup Script
 # Creates a complete backup of Directus database and uploads
-# Generates metadata file for restore validation
 # Version: 1.0
 #===========================================
 
@@ -92,24 +91,13 @@ DB_CONTAINER_NAME="${PROJECT_NAME}__database"
 # Database Backup Functions
 #-------------------------------------------
 
-# Create database backup and metadata
+# Create database backup
 backup_database() {
     print_header "Database Backup"
     print_message "info" "Creating backup directories..."
 
     # Ensure backup directory exists
     mkdir -p "${BACKUP_DIR}"
-
-    # Save metadata for restore validation
-    print_message "info" "Saving backup metadata..."
-    cat > "${BACKUP_DIR}/backup_${TIMESTAMP}.meta" << EOF
-DB_NAME=${DB_NAME}
-DB_USER=${DB_USER}
-DB_HOST=${DB_HOST}
-DB_PORT=${DB_PORT}
-BACKUP_DATE=$(date '+%Y-%m-%d %H:%M')
-HOSTNAME=$(hostname)
-EOF
 
     # Create database dump with safety flags
     print_message "info" "Creating database dump..."
@@ -120,17 +108,15 @@ EOF
         -d "${DB_NAME}" \
         --clean \
         --if-exists \
-        -F p > "${BACKUP_DIR}/backup_${TIMESTAMP}.sql"
+        -F p > "${BACKUP_DIR}/${TIMESTAMP}_db.sql"
 
     if [ $? -eq 0 ]; then
-        print_message "success" "Database backup completed: backup_${TIMESTAMP}.sql"
-        print_message "success" "Backup metadata saved: backup_${TIMESTAMP}.meta"
+        print_message "success" "Database backup completed: ${TIMESTAMP}_db.sql"
         # Show backup size for verification
-        local size=$(du -h "${BACKUP_DIR}/backup_${TIMESTAMP}.sql" | cut -f1)
+        local size=$(du -h "${BACKUP_DIR}/${TIMESTAMP}_db.sql" | cut -f1)
         print_message "info" "Backup size: ${size}"
     else
         print_message "error" "Database backup failed"
-        rm -f "${BACKUP_DIR}/backup_${TIMESTAMP}.meta"
         exit 1
     fi
 }
@@ -154,14 +140,14 @@ backup_uploads() {
     fi
 
     # Create compressed archive of uploads
-    tar -czf "${BACKUP_DIR}/uploads_${TIMESTAMP}.tar.gz" -C ./directus/uploads . || {
+    tar -czf "${BACKUP_DIR}/${TIMESTAMP}_uploads.tar.gz" -C ./directus/uploads . || {
         print_message "error" "Uploads backup failed"
         exit 1
     }
 
     # Show backup size for verification
-    local size=$(du -h "${BACKUP_DIR}/uploads_${TIMESTAMP}.tar.gz" | cut -f1)
-    print_message "success" "Uploads backup completed: uploads_${TIMESTAMP}.tar.gz"
+    local size=$(du -h "${BACKUP_DIR}/${TIMESTAMP}_uploads.tar.gz" | cut -f1)
+    print_message "success" "Uploads backup completed: ${TIMESTAMP}_uploads.tar.gz"
     print_message "info" "Backup size: ${size}"
 }
 
@@ -174,36 +160,29 @@ backup_all() {
     print_header "Starting Backup Process"
     print_message "info" "Starting full backup for project: ${PROJECT_NAME}"
 
-    # Track execution time
-    local start_time=$(date +%s)
-
     # Execute backup operations
     backup_database
     backup_uploads
 
-    # Calculate and display execution summary
-    local end_time=$(date +%s)
-    local duration=$((end_time - start_time))
-
     # Display backup summary
     print_header "Backup Summary"
     print_message "success" "Full backup completed successfully"
-    print_message "info" "Total duration: ${duration} seconds"
-    print_message "info" "Database backup: ${BACKUP_DIR}/backup_${TIMESTAMP}.sql"
-    print_message "info" "Uploads backup: ${BACKUP_DIR}/uploads_${TIMESTAMP}.tar.gz"
-    print_message "info" "Metadata file: ${BACKUP_DIR}/backup_${TIMESTAMP}.meta"
+    print_message "info" "Database backup: ${BACKUP_DIR}/${TIMESTAMP}_db.sql"
+    print_message "info" "Uploads backup: ${BACKUP_DIR}/${TIMESTAMP}_uploads.tar.gz"
+}
+
+# Main function to run all tasks
+main() {
+    backup_all
+
+    if [ $? -eq 0 ]; then
+        exit 0
+    else
+        exit 1
+    fi
 }
 
 #-------------------------------------------
-# Script Entry Point
+# Main
 #-------------------------------------------
-
-case "$1" in
-    "backup")
-        backup_all
-        ;;
-    *)
-        print_message "error" "Usage: $0 backup"
-        exit 1
-        ;;
-esac
+main

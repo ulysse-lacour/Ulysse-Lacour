@@ -1,15 +1,12 @@
 #!/bin/sh
 
 # Directus Backup Script
-# Usage: sh backup.sh [database|uploads|all]
-# Creates timestamped backups of database and/or uploads in /directus/backups
+# Usage: sh backup.sh
+# Creates timestamped backups of database and uploads in /directus/backups
 
 BACKUP_DIR="/directus/backups"
 TIMESTAMP=$(date +%Y%m%d_%H%M)
-
-# Minimal terminal formatting
-BOLD="[1m"
-RESET="[0m"
+MAX_BACKUPS=4
 
 log() {
     case $1 in
@@ -20,22 +17,12 @@ log() {
 }
 
 section() {
-    printf "\n${BOLD}=== %s ===${RESET}\n\n" "$1"
+    printf "\n=== %s ===\n\n" "$1"
 }
 
 backup_database() {
     section "Database Backup"
     mkdir -p "${BACKUP_DIR}"
-
-    log "INFO" "Creating backup metadata..."
-    cat > "${BACKUP_DIR}/backup_${TIMESTAMP}.meta" << EOF
-DB_NAME=${DB_DATABASE}
-DB_USER=${DB_USER}
-DB_HOST=${DB_HOST}
-DB_PORT=${DB_PORT}
-BACKUP_DATE=$(date '+%Y-%m-%d %H:%M')
-HOSTNAME=$(hostname)
-EOF
 
     log "INFO" "Starting database backup..."
     if PGPASSWORD="${DB_PASSWORD}" pg_dump \
@@ -45,14 +32,13 @@ EOF
         -d "${DB_DATABASE}" \
         --clean \
         --if-exists \
-        -F p > "${BACKUP_DIR}/backup_${TIMESTAMP}.sql"; then
+        -F p > "${BACKUP_DIR}/${TIMESTAMP}_db.sql"; then
 
-        size=$(du -h "${BACKUP_DIR}/backup_${TIMESTAMP}.sql" | cut -f1)
+        size=$(du -h "${BACKUP_DIR}/${TIMESTAMP}_db.sql" | cut -f1)
         log "OK" "Database backup completed (${size})"
         return 0
     else
         log "ERROR" "Database backup failed"
-        rm -f "${BACKUP_DIR}/backup_${TIMESTAMP}.meta"
         return 1
     fi
 }
@@ -67,8 +53,8 @@ backup_uploads() {
     fi
 
     log "INFO" "Starting uploads backup..."
-    if tar -czf "${BACKUP_DIR}/uploads_${TIMESTAMP}.tar.gz" -C /directus/uploads .; then
-        size=$(du -h "${BACKUP_DIR}/uploads_${TIMESTAMP}.tar.gz" | cut -f1)
+    if tar -czf "${BACKUP_DIR}/${TIMESTAMP}_uploads.tar.gz" -C /directus/uploads .; then
+        size=$(du -h "${BACKUP_DIR}/${TIMESTAMP}_uploads.tar.gz" | cut -f1)
         log "OK" "Uploads backup completed (${size})"
         return 0
     else
@@ -77,8 +63,33 @@ backup_uploads() {
     fi
 }
 
+cleanup_old_backups() {
+    section "Cleanup Old Backups"
+
+    # Count existing backup sets (counting only database backups as reference)
+    backup_count=$(ls -1 "${BACKUP_DIR}"/*_db.sql 2>/dev/null | wc -l)
+
+    if [ "$backup_count" -ge "$MAX_BACKUPS" ]; then
+        log "INFO" "Found ${backup_count} backups, cleaning up old ones..."
+
+        # Get the oldest backup timestamp
+        oldest_backup=$(ls -1 "${BACKUP_DIR}"/*_db.sql | sort | head -n 1 | sed 's/.*\/\([0-9]\{8\}_[0-9]\{4\}\).*/\1/')
+
+        if [ -n "$oldest_backup" ]; then
+            # Remove both database and uploads backup for the oldest timestamp
+            rm -f "${BACKUP_DIR}/${oldest_backup}_db.sql"
+            rm -f "${BACKUP_DIR}/${oldest_backup}_uploads.tar.gz"
+            log "OK" "Removed backup set from ${oldest_backup}"
+        fi
+    else
+        log "INFO" "No cleanup needed (${backup_count}/${MAX_BACKUPS} backup sets)"
+    fi
+}
+
 check_environment() {
     missing=""
+    printf "\n"
+
     for var in DB_DATABASE DB_USER DB_PASSWORD DB_HOST DB_PORT; do
         if [ -z "$(eval echo \$${var})" ]; then
             missing="${missing} ${var}"
@@ -95,32 +106,9 @@ check_environment() {
 }
 
 main() {
-    section "Backup Started $(date '+%Y-%m-%d %H:%M')"
-    start_time=$(date +%s)
-
-    case "$1" in
-        database)
-            check_environment && backup_database
-            ;;
-        uploads)
-            backup_uploads
-            ;;
-        all)
-            if check_environment; then
-                backup_database && backup_uploads
-            fi
-            ;;
-        *)
-            log "ERROR" "Usage: $0 [database|uploads|all]"
-            exit 1
-            ;;
-    esac
-
-    status=$?
-    end_time=$(date +%s)
-    section "Backup Completed"
-    log "INFO" "Duration: $((end_time - start_time)) seconds"
-    exit $status
+    if check_environment; then
+        cleanup_old_backups && backup_database && backup_uploads
+    fi
 }
 
-main "$1"
+main

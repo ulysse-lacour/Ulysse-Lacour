@@ -29,7 +29,38 @@ RUN rm node_modules/.modules.yaml
 
 EXPOSE ${PORT}
 
-RUN pnpm install directus-template-cli@latest directus-extension-models directus-auto-gen-extension directus-extension-classified-group && pnpm config set auto-install-peers true
+# Install extensions
+RUN pnpm install \
+    # https://github.com/directus-labs/directus-template-cli
+    directus-template-cli@latest \
+    typescript@latest \
+    # https://github.com/tractr/directus-sync
+    directus-extension-sync \
+    directus-sync \
+    # https://github.com/ChappIO/directus-extension-models
+    directus-extension-models \
+    # https://github.com/judahbsullivan/directus-auto-gen-extension
+    directus-auto-gen-extension \
+    # https://github.com/directus-labs/extensions/tree/main/packages/audio-player-interface
+    @directus-labs/audio-player-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/video-player-interface
+    @directus-labs/video-player-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/pdf-viewer-interface
+    @directus-labs/pdf-viewer-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/card-select-interfaces
+    @directus-labs/card-select-interfaces \
+    # https://github.com/formfcw/directus-extension-classified-group
+    directus-extension-classified-group \
+    # https://github.com/directus-labs/extensions/tree/main/packages/experimental-m2a-interface
+    @directus-labs/experimental-m2a-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/super-header-interface
+    @directus-labs/super-header-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/switch-interface
+    @directus-labs/switch-interface \
+    # https://github.com/directus-labs/extensions/tree/main/packages/tour-group-interface
+    @directus-labs/tour-group-interface \
+    && pnpm config set auto-install-peers true
+
 CMD : \
     && node /directus/cli.js bootstrap \
     && node /directus/cli.js start \

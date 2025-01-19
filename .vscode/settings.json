@@ -15,9 +15,11 @@
     "**/.git": true
   },
   "search.exclude": {
-    ".nuxt": true,
-    ".output": true,
-    ".unlighthouse": true
+    "**/.nuxt/**": true,
+    "**/.output/**": true,
+    "**/.unlighthouse/**": true,
+    "**/directus-config/**": true,
+    "**/pnpm-lock.yaml": true,
   },
   "vue3snippets.enable-compile-vue-file-on-did-save-code": false
 }

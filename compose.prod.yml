@@ -35,7 +35,6 @@ services:
     environment:
       NODE_ENV: production
       PROJECT_NAME: ${PROJECT_NAME}
-      TEMPLATE_DIR: ${TEMPLATE_DIR}
       SECRET: ${SECRET}
       PUBLIC_URL: ${DIRECTUS_URL}
       PORT: ${DIRECTUS_PORT}
@@ -51,6 +50,14 @@ services:
       DIRECTUS_ADMIN_TOKEN: ${DIRECTUS_ADMIN_TOKEN}
       CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_ANCESTORS: array:http://localhost:*,TODO,self
       CONTENT_SECURITY_POLICY_DIRECTIVES__CHILD_SRC: array:http://localhost:*,TODO,self
+      CONTENT_SECURITY_POLICY_DIRECTIVES__CONNECT_SRC: "'self' http://localhost:* ws://localhost:* https:"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__DEFAULT_SRC: "'self' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__IMG_SRC: "array:'self' data: blob: http://localhost:*, i.ytimg.com 'unsafe-eval'"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__SCRIPT_SRC: "array:'self', player.vimeo.com 'unsafe-eval', www.youtube.com 'unsafe-eval', www.youtube.com/iframe_api 'unsafe-eval', 'unsafe-eval' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__STYLE_SRC: "'self' 'unsafe-inline' http://localhost:*"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__WORKER_SRC: "'self' blob:"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__FRAME_SRC: "https://www.youtube-nocookie.com,https://player.vimeo.com"
+      CONTENT_SECURITY_POLICY_DIRECTIVES__MEDIA_SRC: "array:'self', *, cdn.plyr.io"
       MARKETPLACE_TRUST: all
       CORS_ENABLED: "true"
       CORS_ORIGIN: "*"
@@ -63,6 +70,8 @@ services:
       - ./directus/backup.sh:/directus/backup.sh
       - ./directus/restore.sh:/directus/restore.sh
       - ./directus/template.sh:/directus/template.sh
+      - ./directus/directus-sync.config.json:/directus/directus-sync.config.json
+      - ./directus/directus-config:/directus/directus-config
 
     labels:
       # traefik with coolify needs harcoded Directus port :
@@ -77,6 +86,7 @@ services:
       dockerfile: ./Dockerfile.prod
       # Env variables required for build time needs to be passed as args in compose and dockerfile
       args:
+        NODE_ENV: production
         NUXT_URL: ${NUXT_URL}
         DIRECTUS_URL: ${DIRECTUS_URL}
         DIRECTUS_ADMIN_TOKEN: ${DIRECTUS_ADMIN_TOKEN}

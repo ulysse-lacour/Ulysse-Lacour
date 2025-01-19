@@ -1,0 +1,62 @@
+[
+  {
+    "collection": "directus_files",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "9e204cad-113e-46dc-986c-b2092e9e819d"
+  },
+  {
+    "collection": "general_infos",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "377040bc-13b5-46bd-be78-c3f2d8006faf"
+  },
+  {
+    "collection": "languages",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "441d37b3-31da-4eff-8b8e-a48b8d2328b3"
+  },
+  {
+    "collection": "seo_translations",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "cd1fa95d-a494-4a41-b722-6e94082d3697"
+  },
+  {
+    "collection": "seo",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "_sync_default_public_policy",
+    "_syncId": "5629b056-c586-4325-8782-7653b4f42a33"
+  }
+]

@@ -25,7 +25,7 @@ print_message() {
     case $type in
         "info") echo -e "${BLUE}ℹ️  ${message}${NC}" ;;
         "success") echo -e "${GREEN}✅ ${message}${NC}" ;;
-        "error") echo -e "${RED}❌ ${message}${NC}" ;;
+        "error") echo -e "${RED}❌ ${message}${NC}\n" ;;
         "warning") echo -e "${YELLOW}⚠️  ${message}${NC}" ;;
     esac
 }
@@ -66,88 +66,6 @@ print_message "success" "Environment loaded successfully"
 BACKUP_DIR="./directus/backups"
 
 #===========================================
-# Metadata Handling
-#===========================================
-
-# Read and compare backup metadata with current environment
-read_metadata() {
-    local timestamp=$1
-    local meta_file="${BACKUP_DIR}/backup_${timestamp}.meta"
-
-    if [ ! -f "$meta_file" ]; then
-        print_message "error" "Metadata file not found: $meta_file"
-        exit 1
-    fi
-
-    # Read metadata into variables
-    while IFS='=' read -r key value; do
-        case "$key" in
-            "DB_NAME") META_DB_NAME="$value" ;;
-            "DB_USER") META_DB_USER="$value" ;;
-            "DB_PORT") META_DB_PORT="$value" ;;
-            "DB_HOST") META_DB_HOST="$value" ;;
-            "BACKUP_DATE") META_BACKUP_DATE="$value" ;;
-            "HOSTNAME") META_HOSTNAME="$value" ;;
-        esac
-    done < "$meta_file"
-
-    print_header "Backup Information"
-    echo "Original backup details:"
-    echo "------------------------"
-    echo "Database: ${META_DB_NAME}"
-    echo "User: ${META_DB_USER}"
-    echo "Port: ${META_DB_PORT}"
-    echo "Host: ${META_DB_HOST}"
-    echo "Backup Date: ${META_BACKUP_DATE}"
-    echo "From Host: ${META_HOSTNAME}"
-    echo "------------------------"
-
-    # Compare environments and show differences
-    print_header "Environment Comparison"
-    local differences=0
-
-    if [ "${META_DB_NAME}" != "${DB_NAME}" ]; then
-        print_message "warning" "Different database name:"
-        echo "  Backup: ${META_DB_NAME}"
-        echo "  Current: ${DB_NAME}"
-        differences=$((differences + 1))
-    fi
-
-    if [ "${META_DB_USER}" != "${DB_USER}" ]; then
-        print_message "warning" "Different database user:"
-        echo "  Backup: ${META_DB_USER}"
-        echo "  Current: ${DB_USER}"
-        differences=$((differences + 1))
-    fi
-
-    if [ "${META_DB_PORT}" != "${DB_PORT}" ]; then
-        print_message "warning" "Different database port:"
-        echo "  Backup: ${META_DB_PORT}"
-        echo "  Current: ${DB_PORT}"
-        differences=$((differences + 1))
-    fi
-
-    if [ $differences -gt 0 ]; then
-        print_message "warning" "Found $differences differences between backup and current environment"
-        echo
-        print_message "warning" "Do you want to continue with the restore? (y/n)"
-        read -r choice
-
-        case $choice in
-            [yY])
-                print_message "info" "Continuing with restore..."
-                ;;
-            *)
-                print_message "info" "Restore cancelled"
-                exit 0
-                ;;
-        esac
-    else
-        print_message "success" "Current environment matches backup metadata"
-    fi
-}
-
-#===========================================
 # Backup Selection
 #===========================================
 
@@ -168,16 +86,15 @@ FORMATTED_DATES=()
 
 # Collect and validate complete backups
 while read -r file; do
-    if [[ $file =~ backup_([0-9]{8}_[0-9]{2}[0-9]{2})[0-9]*\.sql$ ]]; then
+    if [[ $file =~ ([0-9]{8}_[0-9]{2}[0-9]{2})[0-9]*\_db.sql$ ]]; then
         timestamp="${BASH_REMATCH[1]}"
-        if [ -f "${BACKUP_DIR}/backup_${timestamp}.sql" ] && \
-           [ -f "${BACKUP_DIR}/backup_${timestamp}.meta" ] && \
-           [ -f "${BACKUP_DIR}/uploads_${timestamp}.tar.gz" ]; then
+        if [ -f "${BACKUP_DIR}/${timestamp}_db.sql" ] && \
+           [ -f "${BACKUP_DIR}/${timestamp}_uploads.tar.gz" ]; then
             TIMESTAMPS+=("$timestamp")
             FORMATTED_DATES+=("$(format_date "$timestamp")")
         fi
     fi
-done < <(ls -1 ${BACKUP_DIR}/backup_*.sql 2>/dev/null | sort -r)
+done < <(ls -1 ${BACKUP_DIR}/*_db.sql 2>/dev/null | sort -r)
 
 # Check if any valid backups were found
 if [ ${#TIMESTAMPS[@]} -eq 0 ]; then
@@ -206,10 +123,6 @@ fi
 # Get selected timestamp and confirm
 SELECTED_TIMESTAMP="${TIMESTAMPS[$((selection-1))]}"
 print_message "success" "Selected backup from: $(format_date "$SELECTED_TIMESTAMP")"
-
-# Validate metadata
-print_message "info" "Validating backup metadata..."
-read_metadata "${SELECTED_TIMESTAMP}"
 
 #===========================================
 # Restore Confirmation
@@ -267,7 +180,7 @@ EOF
 temp_log=$(mktemp)
 
 # Restore the database based on backup format
-if [[ -f "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.dump" ]]; then
+if [[ -f "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_db.dump" ]]; then
     # Custom format backup
     docker exec -i "${PROJECT_NAME}__database" pg_restore \
         -h "${DB_HOST}" \
@@ -280,7 +193,7 @@ if [[ -f "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.dump" ]]; then
         --if-exists \
         --disable-triggers \
         --single-transaction \
-        "/backups/backup_${SELECTED_TIMESTAMP}.dump" > "$temp_log" 2>&1
+        "/backups/${SELECTED_TIMESTAMP}_db.dump" > "$temp_log" 2>&1
 else
     # Plain SQL backup
     docker exec -i "${PROJECT_NAME}__database" psql \
@@ -288,7 +201,7 @@ else
         -p "${DB_PORT}" \
         -U "${DB_USER}" \
         -d "${DB_NAME}" \
-        -q < "${BACKUP_DIR}/backup_${SELECTED_TIMESTAMP}.sql" > "$temp_log" 2>&1
+        -q < "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_db.sql" > "$temp_log" 2>&1
 fi
 
 if [ $? -ne 0 ]; then
@@ -309,7 +222,7 @@ print_header "Uploads Restore"
 print_message "info" "Restoring uploads..."
 
 rm -rf ./directus/uploads/* 2>/dev/null
-tar -xzf "${BACKUP_DIR}/uploads_${SELECTED_TIMESTAMP}.tar.gz" -C ./directus/uploads/
+tar -xzf "${BACKUP_DIR}/${SELECTED_TIMESTAMP}_uploads.tar.gz" -C ./directus/uploads/
 
 if [ $? -ne 0 ]; then
     print_message "error" "Uploads restore failed"
