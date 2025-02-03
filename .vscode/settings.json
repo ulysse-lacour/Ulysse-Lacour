@@ -1,12 +1,4 @@
 {
-  "editor.tabSize": 2,
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.fixAll.eslint": "explicit",
-    "source.fixAll.stylelint": "explicit",
-    "source.fixAll.markdownlint": "explicit"
-  },
   "[markdown]": {
     "editor.formatOnSave": true
   },
@@ -21,5 +13,15 @@
     "**/directus-config/**": true,
     "**/pnpm-lock.yaml": true
   },
-  "vue3snippets.enable-compile-vue-file-on-did-save-code": false
+  // Linter & Formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit",
+    "source.fixAll.markdownlint": "explicit"
+  },
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": false
 }

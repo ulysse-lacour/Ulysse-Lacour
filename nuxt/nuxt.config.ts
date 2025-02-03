@@ -85,6 +85,12 @@ export default defineNuxtConfig({
     },
   ],
 
+  eslint: {
+    config: {
+      stylistic: false,
+    },
+  },
+
   directus: {
     url: process.env.DIRECTUS_URL,
     devtools: true,
