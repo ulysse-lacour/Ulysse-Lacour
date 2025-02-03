@@ -1,18 +1,36 @@
 // Font-face mixin
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+@mixin font-face($font-family, $file-path, $file-format: "woff2", $weight: normal, $style: normal) {
   @font-face {
     font-family: $font-family;
-    src: url("#{$file-path}.woff2");
+    src: url("#{$file-path}.#{$file-format}") format("#{$file-format}");
     font-display: swap;
     font-weight: $weight;
     font-style: $style;
   }
 }
 
-// Fonts
-@include font-face("TWKLausanne", "@/assets/fonts/TWKLausanne-250", 250, normal);
+// I Font Family
+@include font-face("I", "@/assets/fonts/I-300", "woff2", 300);
+@include font-face("I", "@/assets/fonts/I-400", "woff2", 400);
+@include font-face("I", "@/assets/fonts/I-500", "woff2", 500);
+@include font-face("I", "@/assets/fonts/I-600", "woff2", 600);
 
-@include font-face("TWKLausanne", "@/assets/fonts/TWKLausanne-250Italic", 250, italic);
+// Outfit Font Family
+@include font-face("Outfit", "@/assets/fonts/Outfit-Black", "woff2", 900);
+@include font-face("Outfit", "@/assets/fonts/Outfit-ExtraBold", "woff2", 800);
+@include font-face("Outfit", "@/assets/fonts/Outfit-Bold", "woff2", 700);
+@include font-face("Outfit", "@/assets/fonts/Outfit-SemiBold", "woff2", 600);
+@include font-face("Outfit", "@/assets/fonts/Outfit-Medium", "woff2", 500);
+@include font-face("Outfit", "@/assets/fonts/Outfit-Regular", "woff2", 400);
+@include font-face("Outfit", "@/assets/fonts/Outfit-Light", "woff2", 300);
+@include font-face("Outfit", "@/assets/fonts/Outfit-ExtraLight", "woff2", 200);
+@include font-face("Outfit", "@/assets/fonts/Outfit-Thin", "woff2", 100);
+
+// Other Fonts
+@include font-face("CirrusCumulus", "@/assets/fonts/CirrusCumulus", "woff", normal);
+@include font-face("Director", "@/assets/fonts/Director-Bold", "woff2", bold);
+@include font-face("Typefesse", "@/assets/fonts/Typefesse_Claire-Obscure", "woff2", normal);
+@include font-face("Typefesse-full", "@/assets/fonts/Typefesse_Pleine", "woff2", normal);
 
 // Text styles
 @mixin headline {

@@ -119,7 +119,7 @@ use_node_version() {
 install_dependencies() {
     print_header "Install Dependencies"
     print_message "info" "Installing Nuxt dependencies..."
-    pnpm install --force
+    pnpm install
 
     if [ $? -eq 0 ]; then
         print_message "success" "Dependencies installed successfully"

@@ -18,6 +18,7 @@ COPY template.sh /directus/template.sh
 RUN chmod +x /directus/template.sh
 
 # Install pnpm and necessaries directus dependencies
+ENV COREPACK_DEFAULT_TO_LATEST=0
 RUN corepack enable \
     && corepack prepare pnpm@9.10 --activate
 

@@ -51,6 +51,7 @@
     "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
+    "@hypernym/nuxt-gsap": "^2.4.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@nuxt/icon": "^1.10.3",
     "@nuxt/test-utils": "^3.15.4",

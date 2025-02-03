@@ -3,9 +3,7 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "types": [
-      "./app/types/Types"
-    ],
+    "types": ["./app/types/Types"],
     "noImplicitAny": false
   }
 }

@@ -2,7 +2,7 @@ import { blackA } from "@radix-ui/colors";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./**/*.vue"],
+  content: ["./app/*.vue"],
   theme: {
     extend: {
       colors: {

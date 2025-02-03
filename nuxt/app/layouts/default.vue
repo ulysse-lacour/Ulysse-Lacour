@@ -6,7 +6,5 @@
     <main class="content-wrapper">
       <slot />
     </main>
-
-    <Footer />
   </div>
 </template>

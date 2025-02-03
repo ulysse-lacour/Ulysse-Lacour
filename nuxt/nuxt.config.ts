@@ -74,6 +74,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/color-mode",
     "radix-vue/nuxt",
+    "@hypernym/nuxt-gsap",
   ],
 
   // Components configuration - https://nuxt.com/docs/guide/directory-structure/components
@@ -209,5 +210,9 @@ export default defineNuxtConfig({
     classSuffix: "",
     // No dark mode
     preference: "light",
+  },
+
+  gsap: {
+    composables: true,
   },
 });

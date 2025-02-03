@@ -11,6 +11,7 @@ ENV NODE_OPTIONS=--max-old-space-size=8192
 # Define environment variables
 ENV HOST=0.0.0.0
 ENV NODE_ENV=development
+ENV COREPACK_DEFAULT_TO_LATEST=0
 
 # Enable pnpm
 ENV PNPM_HOME="/pnpm"
